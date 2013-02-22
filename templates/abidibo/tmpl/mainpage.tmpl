@@ -1,0 +1,66 @@
+<?js
+var data = obj;
+var self = this;
+?>
+
+<?js if (data.kind === 'package') { ?>
+  <section>
+    <h2><?js= data.name ?> <?js= data.version ?></h2>
+    <div class="container-overview">
+      <?js if (data.description) { ?>
+        <div class="package-description"><p><?js= data.description ?></p></div>
+      <?js } ?>
+      <dl class="details">
+      <?js if (data.version) { ?>
+        <dt class="tag-version">Version:</dt>
+        <dd class="tag-version"><ul><li><?js= data.version ?></li></ul></dd>
+      <?js } ?>
+      <?js if (data.authors && data.authors.length) {?>
+        <dt class="tag-author">Author:</dt>
+        <dd class="tag-author">
+          <ul>
+          <?js authors.forEach(function(a) { ?>
+            <li><a href="<?js= a.url ?>"><?js= a.name ?></a> &lt;<a href="mailto:<?js= a.email ?>"><?js= a.email ?></a>&gt;</li>
+          <?js }); ?>
+          </ul>
+        </dd>
+      <?js } ?>
+      <?js if (data.copyright) { ?>
+        <dt class="tag-copyright">Copyright:</dt>
+        <dd class="tag-copyright"><ul class="dummy"><li><?js= data.copyright ?></li></ul></dd>
+      <?js } ?>
+      <?js if (data.licenses && data.licenses.length) {?>
+        <dt class="tag-license">License:</dt>
+        <dd class="tag-license">
+          <ul>
+          <?js data.licenses.forEach(function(l) { ?>
+            <li><a href="<?js= l.url ?>"><?js= l.type ?></a></li>
+          <?js }); ?>
+          </ul>
+        </dd>
+      <?js } ?>
+      <?js if (data.repositories && data.repositories.length) {?>
+        <dt class="tag-repository">Repository:</dt>
+        <dd class="tag-repository">
+          <ul>
+          <?js data.repositories.forEach(function(r) { ?>
+            <li><a href="<?js= r.url ?>"><?js= r.url ?></a></li>
+          <?js }); ?>
+          </ul>
+        </dd>
+      <?js } ?>
+	    <?js if (data.bugs) {?>
+        <dt class="tag-bug">Bug report:</dt>
+        <dd class="tag-bug">
+          <ul><li><a href="<?js= data.bugs ?>"><?js= data.bugs ?></a></li></ul>
+        </dd>
+      <?js } ?>
+    </div>
+  </section>
+<?js } ?>
+
+<?js if (data.readme) { ?>
+    <section>
+        <article><?js= data.readme ?></article>
+    </section>
+<?js } ?>
